@@ -1,0 +1,50 @@
+{
+  "name": "pg-ltree-util",
+  "version": "1.0.0",
+  "description": "Utilities for dealing with ltree values in postgresql",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "tap --node-arg=-r --node-arg=babel-register tests/*.js",
+    "test-some": "tap --node-arg=-r --node-arg=babel-register",
+    "cover": "cross-env BABEL_ENV=test nyc tap tests/test_*.js && nyc check-coverage && nyc report --reporter=text",
+    "ci-test": "cross-env NODE_ENV=test nyc tap -Rtap tests/test_*.js | tee .tap_output | tap -Rspec -",
+    "ci-cover": "nyc check-coverage",
+    "ci-coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "lint": "eslint .",
+    "build": "babel src --out-dir build",
+    "prepublish": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:gas-buddy/pg-ltree-util.git"
+  },
+  "keywords": [
+    "postgres",
+    "postgresql",
+    "ltree",
+    "gasbuddy"
+  ],
+  "author": "GasBuddy",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.4.5",
+    "babel-preset-gasbuddy": "^1",
+    "cross-env": "^3.1.4",
+    "eslint": "^3.1.0",
+    "eslint-config-gasbuddy": "^1",
+    "tap": "^10.0.0"
+  },
+  "nyc": {
+    "include": [
+      "src"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "sourceMap": false,
+    "instrument": false,
+    "reporter": [
+      "lcov"
+    ]
+  }
+}
