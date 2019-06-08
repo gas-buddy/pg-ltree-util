@@ -36,7 +36,8 @@ export function unescapeName(value) {
   }
   let retVal = '';
   let inEscape = false;
-  for (let spot = 0, length = value.length; spot < length; spot += 1) {
+  const { length } = value;
+  for (let spot = 0; spot < length; spot += 1) {
     const c = value[spot];
     if (inEscape) {
       if (c === '_') {
